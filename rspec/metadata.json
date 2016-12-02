@@ -1,0 +1,24 @@
+{
+  "name": "brownbag",
+  "version": "1.0.0",
+  "author": "MSM",
+  "license": "MIT",
+  "summary": "Rspec-puppet brownbag",
+  "source": "https://github.com/lucadevitis-msm/brownbags/rspec",
+  "project_page": "https://github.com/lucadevitis-msm/brownbags/rspec",
+  "issues_url": "https://github.com/lucadevitis-msm/brownbags/rspec",
+  "tags": [ "brownbag" ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [ "5.0", "6.0", "7.0" ]
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.6.0 < 5.0.0"
+    }
+  ],
+  "data_provider": "hiera"
+}

@@ -1,0 +1,29 @@
+gemspec
+source 'https://rubygems.org' do
+  gem 'sensu-plugin'
+
+  group :development do
+    gem 'pry'
+    gem 'wirble'
+    gem 'serverspec'
+    gem 'rubocop'
+    gem 'rspec'
+    gem 'serverspec'
+    gem 'coveralls'
+    gem 'bundler', '~> 1.11'
+    gem 'rake', '~> 10.0'
+    gem 'ruby-augeas'
+    gem 'puppet-syntax'
+    gem 'puppet', '< 4'
+    gem 'puppetlabs_spec_helper'
+    gem 'hiera-puppet-helper'
+    gem 'puppet-lint', '= 1.1.0'
+    gem 'metadata-json-lint'
+    gem 'hiera'
+  end
+
+  group :docs do
+    gem 'yard'
+    gem 'puppet-strings'
+  end
+end
