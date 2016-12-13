@@ -24,4 +24,8 @@ source 'https://rubygems.org' do
     gem 'puppet-strings'
     gem 'yard'
   end
+
+  group :testing do
+    gem 'beaker', '< 3'
+  end
 end
