@@ -23,3 +23,16 @@ RSpec.configure do |c|
     set :disable_sudo, false
   end
 end
+
+# You can monkey patch available classes, like File, to parse various file
+# content types. This is just to make the fragment spec more readable.
+module Serverspec
+  module Type
+    class File
+      alias fragment_data content_as_yaml
+    end
+  end
+end
+
+# Load all shared examples
+Dir['./spec/support/**/*.rb'].each { |shared_example| require shared_example }
