@@ -28,10 +28,10 @@ Metrics/ModuleLength:
   Max: 180
 
 Style/MultilineHashBraceLayout:
-  EnforcedStyle: same_line
+  EnforcedStyle: symmetrical
 
 Style/MultilineMethodCallBraceLayout:
-  EnforcedStyle: same_line
+  EnforcedStyle: symmetrical
 
 Style/MultilineArrayBraceLayout:
-  EnforcedStyle: same_line
+  EnforcedStyle: symmetrical

@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   # delete this section to allow pushing this gem to any host.
   spec.metadata['allowed_push_host'] = 'http://mygemserver.com'
 
-  spec.files = %x{git ls-files -z rspec}.split("\x0")
+  spec.files = `git ls-files -z rspec`.split("\x0")
   spec.files.reject! { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir = 'bin'
   spec.executables = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

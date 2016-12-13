@@ -1,10 +1,12 @@
+# I don't want to be bothered with line lenght here.
+# rubocop:disable Metrics/LineLength
 require 'rspec'
+require 'brownbag/account'
 
-describe Account do
-
+describe Brownbag::Account do
   # Helper function
   def new_balance
-    Account.new.balance
+    Brownbag::Account.new.balance
   end
 
   # Implicit subject!
@@ -43,12 +45,12 @@ describe Account do
   end
 
   describe '#withdrow' do
-
     context 'when balance is high enough' do
       # `let` is a memoized helper function
       let(:initial_amount) { 5 }
 
-      # I could have set this hook in the outer context, and use it belo
+      # I could have set this hook in the outer context, and use it lower
+      # contexts.
       before(:example) { subject.deposit(initial_amount) }
 
       it 'should change the balance' do
