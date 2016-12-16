@@ -1,5 +1,10 @@
 gemspec
 source 'https://rubygems.org' do
+  group :docs do
+    gem 'puppet-strings'
+    gem 'yard'
+  end
+
   group :development do
     gem 'bundler', '~> 1.11'
     gem 'coveralls'
@@ -20,12 +25,11 @@ source 'https://rubygems.org' do
     gem 'wirble'
   end
 
-  group :docs do
-    gem 'puppet-strings'
-    gem 'yard'
-  end
-
-  group :testing do
+  group :acceptance do
     gem 'beaker', '< 3'
+    gem 'beaker-rspec'
+    gem 'beaker-hiera'
+    gem 'beaker-facter'
+    gem 'minitest', '< 5'
   end
 end

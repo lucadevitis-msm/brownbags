@@ -9,7 +9,16 @@ require 'acceptance_spec_helper'
 # - windows registry and features
 # - containers and images (lxc and docker)
 # - yum repos
+
+set :backend, :ssh
+set :ssh_options, password: 'root'
+
 describe host('localhost') do
+  describe file('/etc/redhat-release') do
+    it { is_expected.to be_file }
+    its(:content) { is_expected.to include("CentOS release 6.7") }
+  end
+
   it { is_expected.to be_resolvable.by('hosts') }
 
   # You can filter out some checks

@@ -1,0 +1,13 @@
+HOSTS:
+  centos-65-x64:
+    roles:
+      - instance
+      - master
+    platform: el-6-x86_64
+    box: puppetlabs/centos-6.5-64-nocm
+    hypervisor: vagrant
+CONFIG:
+  masterless: true
+  ssh:
+    password: root
+    auth_methods: ["password"]
