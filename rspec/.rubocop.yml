@@ -5,6 +5,7 @@ AllCops:
   ExtraDetails: true
   Exclude:
     - 'vendor/**/*'
+    - 'vagrant_files/**/*'
 
 # Cyclomatic complexity is a measure of source code complexity.
 Metrics/CyclomaticComplexity:
