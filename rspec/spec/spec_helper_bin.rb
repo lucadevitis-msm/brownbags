@@ -1,4 +1,4 @@
-require 'base_spec_helper'
+require 'spec_helper'
 
 # I need to avoid the script to run at exit, so I redefine at_exit before it
 # is used by the module.

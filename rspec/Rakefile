@@ -3,7 +3,6 @@ require 'yard'
 require 'rake/clean'
 require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
-require 'beaker/tasks/quick_start'
 
 # Tells which files to remove on clean task.
 CLEAN.include(['.yardoc', 'doc', 'coverage'])
@@ -12,8 +11,14 @@ RuboCop::RakeTask.new
 
 YARD::Rake::YardocTask.new
 
-RSpec::Core::RakeTask.new
+{ rspec: 'brownbag',
+  acceptance: 'acceptance',
+  serverspec: 'serverspec' }.each do |name, path|
+  RSpec::Core::RakeTask.new name => [:rubocop, :yard] do |t|
+    t.rspec_opts = "--pattern spec/#{path}/**/*_spec.rb"
+  end
+end
 
 # Tasks to run if rake command is called without arguments.
-task spec: [:rubocop, :yard]
+task spec: [:rspec, :serverspec, :acceptance]
 task build: [:clean, :spec]

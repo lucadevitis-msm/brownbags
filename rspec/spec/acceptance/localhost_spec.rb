@@ -1,4 +1,6 @@
-require 'acceptance_spec_helper'
+require 'spec_helper_acceptance'
+require 'beaker-rspec'
+require 'beaker-hiera'
 
 # Other very interesting things you can include in your spec:
 # - users
@@ -9,14 +11,10 @@ require 'acceptance_spec_helper'
 # - windows registry and features
 # - containers and images (lxc and docker)
 # - yum repos
-
-set :backend, :ssh
-set :ssh_options, password: 'root'
-
 describe host('localhost') do
   describe file('/etc/redhat-release') do
     it { is_expected.to be_file }
-    its(:content) { is_expected.to include("CentOS release 6.7") }
+    its(:content) { is_expected.to include('CentOS release 6') }
   end
 
   it { is_expected.to be_resolvable.by('hosts') }
@@ -29,13 +27,13 @@ describe host('localhost') do
   # Test remote connections
   describe host('www.google.com') do
     it { is_expected.to be_resolvable.by('dns') }
-    it { is_expected.to be_reachable.with(port: 80, proto: 'tcp', timeout: 5) }
+    it { is_expected.to be_reachable }
   end
 
   # Supports multiple package managers
-  describe package('ruby') do
-    it { is_expected.to be_installed.by(:rpm).with_version('1.8.7') }
-  end
+  # describe package('ruby') do
+  #   it { is_expected.to be_installed.by(:rpm).with_version('1.8.7') }
+  # end
 
   # Test the outcome of specific commands
   describe command('netstat') do

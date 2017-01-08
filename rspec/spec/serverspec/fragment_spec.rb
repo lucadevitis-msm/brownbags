@@ -1,5 +1,5 @@
 # rubocop:disable Metrics/LineLength
-require 'acceptance_spec_helper'
+require 'spec_helper_serverspec'
 
 describe file('fragment.yml') do
   it_behaves_like 'a YAML file'

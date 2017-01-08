@@ -1,0 +1,19 @@
+HOSTS:
+#   docker-centos6-66-msm:
+#     roles:
+#       - docker_container
+#       - master
+#     platform: el-6-x86_64
+#     image: centos:6.6-msm
+#     hypervisor: docker
+  vagrant-centos6-66-x64-nocm:
+    roles:
+      - instance
+      - master
+    platform: el-6-x86_64
+    box: puppetlabs/centos-6.6-64-nocm
+    hypervisor: vagrant
+CONFIG:
+  quite: true
+  type: foss
+  masterless: true

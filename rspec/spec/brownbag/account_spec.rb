@@ -1,6 +1,6 @@
 # I don't want to be bothered with line lenght here.
 # rubocop:disable Metrics/LineLength
-require 'rspec'
+require 'spec_helper'
 require 'brownbag/account'
 
 describe Brownbag::Account do
