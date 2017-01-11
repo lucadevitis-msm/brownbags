@@ -6,7 +6,7 @@ require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 
 # Tells which files to remove on clean task.
-CLEAN.include(['.yardoc', 'doc', 'coverage'])
+CLEAN.include %w(.yardoc doc coverage log junit)
 
 RuboCop::RakeTask.new
 
