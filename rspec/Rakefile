@@ -13,9 +13,9 @@ RuboCop::RakeTask.new
 YARD::Rake::YardocTask.new
 
 def docker_build
-  sh 'docker images | grep "^centos *6.6-msm"'
+  sh 'docker images | grep --quiet "^centos *6.6-msm"', verbose: false
 rescue RuntimeError
-  sh 'docker build --tag centos:6.6-msm .'
+  sh 'docker build --tag centos:6.6-msm .', verbose: false
 end
 
 task(:docker_build) { docker_build }
