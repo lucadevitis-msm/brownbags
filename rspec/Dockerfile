@@ -1,6 +1,6 @@
 FROM centos:6.6
 MAINTAINER Luca De Vitis <luca.devitis at moneysupermarket.com>
-RUN yum --assumeyes install tar xz zlib-devel openssl-devel                             && \
+RUN yum --assumeyes install nc tar xz zlib-devel openssl-devel                          && \
     yum --assumeyes groupinstall "Development Tools"                                    && \
     curl --remote-name http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.gz          && \
     tar --extract --verbose --gzip --file ruby-2.1.5.tar.gz                             && \
