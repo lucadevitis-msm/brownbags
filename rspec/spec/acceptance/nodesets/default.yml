@@ -6,13 +6,6 @@ HOSTS:
     platform: el-6-x86_64
     image: centos:6.6-msm
     hypervisor: docker
-#   vagrant-centos6-66-x64-nocm:
-#     roles:
-#       - instance
-#       - master
-#     platform: el-6-x86_64
-#     box: puppetlabs/centos-6.6-64-nocm
-#     hypervisor: vagrant
 CONFIG:
   # When you need to inspect the commands being used, you can use log_level
   # log_level: verbose
