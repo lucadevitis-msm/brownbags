@@ -1,11 +1,12 @@
 AllCops:
+  DefaultFormatter: progress
   AutoCorrect: true
   DisplayCopNames: true
   DisplayStyleGuide: true
   ExtraDetails: true
   Exclude:
     - 'vendor/**/*'
-    - 'vagrant_files/**/*'
+    - 'spec/fixtures/**/*'
 
 # Cyclomatic complexity is a measure of source code complexity.
 Metrics/CyclomaticComplexity:
