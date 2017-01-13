@@ -1,26 +1,11 @@
 fixtures:
-  repositories:
-    java:
-      repo: 'https://github.com/MSMFG/puppet-java'
-      ref: '0.0.10'
+  # repositories:
+  #   requirement:
+  #     repo: 'https://github.com/MSMFG/puppet-requirement'
+  #     ref: '0.0.10'
   forge_modules:
     stdlib:
       repo: 'puppetlabs/stdlib'
       ref: '4.6.0'
-    tomcat:
-      repo: 'puppetlabs/tomcat'
-      ref: '1.5.0'
-    concat:
-      repo: 'puppetlabs/concat'
-      ref: '2.2.0'
-    archive:
-      repo: 'puppet/archive'
-      ref: '1.0.0'
-    mysql_java_connector:
-      repo: 'puppet/mysql_java_connector'
-      ref: '2.0.0'
-    wait_for:
-      repo: 'basti1302/wait_for'
-      ref: '0.3.0'
   symlinks:
-    talend: '#{source_dir}'
+    brownbag: '#{source_dir}'
