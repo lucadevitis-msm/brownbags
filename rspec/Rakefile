@@ -3,18 +3,17 @@ require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet-strings/tasks'
 require 'rake/clean'
 
-# Tells which files to remove on clean task.
-CLEAN.include %w(.yardoc doc coverage log junit)
+# Instead of write a `begin` block, I prefer to write a function (taking
+# advantage of the implicit `begin` block).
 
-# Builds the docker image, if it is not available. Instead of write a `begin`
-# block, I prefer to write a function (taking advantage of the implicit `begin`
-# block).
+# Build the docker image if it's not available.
 def docker_build
   sh 'docker images | grep --quiet "^centos *6.6-msm"', verbose: false
 rescue RuntimeError
   sh 'docker build --tag centos:6.6-msm .', verbose: false
 end
 
+# Delete the docker image, ignoring any error
 def docker_rmi
   sh 'docker rmi --force centos:6.6-msm', verbose: false
 rescue RuntimeError => error
@@ -27,16 +26,19 @@ task(:docker_build) { docker_build }
 desc 'Deleted the created docker image'
 task(:docker_rmi) { docker_rmi }
 
+# Tells which files to remove on clean task.
+CLEAN.include %w(.yardoc doc coverage log junit)
+
 # `:clean` task is supposed to clean intermediate/temporary files
-# `:clobber` task is uspposed to clean even final products
+# `:clobber` task is uspposed to clean final products
 task clobber: [:clean, :docker_rmi]
 
 # You normally don't need to re-define `:spec_standalone`, but this is a
 # special all-in-one project
 Rake::Task[:spec_standalone].clear
-RSpec::Core::RakeTask.new(:spec_standalone) do |t|
+RSpec::Core::RakeTask.new(:spec_standalone) do |rspec|
   specs = 'classes,defines,functions,types,brownbag,serverspec'
-  t.pattern = "spec/{#{specs}}/**/*_spec.rb"
+  rspec.pattern = "spec/{#{specs}}/**/*_spec.rb"
 end
 
 # Defining few sane requirements for the spec task. To me, it doesn't make any
@@ -45,6 +47,6 @@ task spec: [:validate, :lint, :rubocop, :'strings:generate']
 
 # Again, doesn't make any sense to run acceptance specs if standard specs fail.
 desc 'Run the acceptance specs'
-RSpec::Core::RakeTask.new acceptance: [:spec, :docker_build] do |t|
-  t.pattern = 'spec/acceptance/**/*_spec.rb'
+RSpec::Core::RakeTask.new acceptance: [:spec, :docker_build] do |rspec|
+  rspec.pattern = 'spec/acceptance/**/*_spec.rb'
 end
