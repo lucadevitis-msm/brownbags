@@ -6,7 +6,10 @@
 # @param path    [String]  The configuration file full path
 #
 # @example brownbag
-#   include ::brownbag
+#   brownbag::configuration_file { 'default':
+#     configuration_file_path   => '/some/path.conf',
+#     configuration_file_values => { key1 => value1, key2 => value2 }
+#   }
 define brownbag::configuration_file ($path = $title, $values = undef)
 {
   # `undef` is incredibly usefull: we should use more of it.
