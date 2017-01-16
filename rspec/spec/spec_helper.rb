@@ -1,9 +1,9 @@
-require 'puppetlabs_spec_helper/module_spec_helper'
 require 'simplecov'
+require 'puppetlabs_spec_helper/module_spec_helper'
 
-SimpleCov.at_exit do
-  puts 'Code coverage:'
-  SimpleCov.result.format!
-  puts "\nResource coverage:"
-  RSpec::Puppet::Coverage.report! # (95)
+RSpec.configure do |hook|
+  hook.after :suite do
+    RSpec::Puppet::Coverage.report! # (95)
+    SimpleCov.result.format!
+  end
 end

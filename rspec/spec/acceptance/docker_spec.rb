@@ -1,4 +1,3 @@
-require 'spec_helper'
 require 'spec_helper_acceptance'
 # require 'beaker-hiera'
 

@@ -53,4 +53,4 @@ RSpec::Core::RakeTask.new acceptance: [:spec, :docker_build] do |rspec|
 end
 
 # Building a module/gem obviously depends on all specs being met.
-task :build, [:acceptance]
+task build: [:acceptance]
