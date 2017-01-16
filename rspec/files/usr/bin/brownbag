@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+
+def main(argv=ARGV)
+  puts(YAML.dump(File.read(argv[0])))
+  sleep(argv[1] || 5)
+end
+
+loop do
+  main(*ARGV)
+end
