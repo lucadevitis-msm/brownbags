@@ -1,7 +1,7 @@
 require 'sensu-plugin/check/cli'
-require 'brownbag/account'
+require 'brownbag_rspec/account'
 
-module Brownbag
+module BrownbagRspec
   module Bin
     # Check an account transactions log against a threshold
     # @author Luca De Vitis <luca.devitis at moneysupermarket.com>
@@ -14,12 +14,16 @@ module Brownbag
              proc: proc { |a| a.to_i }
 
       # Truth is... this looks suspiciously like a spec...
+      # And I needed a documentation string for my function, so I decided to
+      # show you the very bad practice of writing a useless comments. A better
+      # use of this comment would have been a list of exit statuses or
+      # exceptions.
       def run
         transactions_log = argv[0]
 
         unknown 'transactions log' unless transactions_log
 
-        account = Brownbag::Account.new
+        account = BrownbagRspec::Account.new
 
         # I'm expecting each log to be like: `operation amount`
         File.read(transactions_log).lines.each do |log|

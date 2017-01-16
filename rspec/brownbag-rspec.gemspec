@@ -1,12 +1,12 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'brownbag/version'
+require 'brownbag_rspec/version'
 
 Gem::Specification.new do |spec|
   raise 'RubyGems 2.0 or newer is required.' unless spec.respond_to?(:metadata)
-  spec.name = ''
-  spec.version = Brownbag::VERSION
+  spec.name = 'brownbag-rspec'
+  spec.version = BrownbagRspec::VERSION
   spec.authors = ['Luca De Vitis']
   spec.email = ['luca.devitis at moneysupermarket.com']
 

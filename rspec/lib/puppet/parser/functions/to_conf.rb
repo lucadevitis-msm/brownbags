@@ -1,43 +1,44 @@
-# rubocop:disable Style/Documentation
+# rubocop:disable Style/ClosingParenthesisIndentation
+# I'd like these puppet parser functions to be the exception when it comes to
+# parenthesis indentation.
 require 'yaml'
 
-module Puppet
-  module Parser
-    module Functions
-      newfunction(:to_conf, type: :rvalue, doc: <<-'ENDHEREDOC'
-                   Turn the argument into brownbag configuration.
+# Returns brownbag configuration file content as a YAML document
+# @author Luca De Vitis <luca.devitis at moneysupermarket.com>
 
-                   Usage:
+Puppet::Parser::Functions.newfunction(:to_conf, type: :rvalue, doc: <<-'DOC'
+  Turn the argument into brownbag configuration.
 
-                   $content = {
-                     'key1' => 'string',
-                     'key2' => ['an', 'array'],
-                     'key3' => 1,
-                     'key4' => {
-                       'sub1' => 'another',
-                       'sub2' => 'again'
-                     }
-                   }
+  Usage:
 
-                   # /path/to/file.yml content is expected to be valid YAML:
-                   # ---
-                   # key4:
-                   #   sub2: again
-                   #   sub1: another
-                   # key3: 1
-                   # key2:
-                   #   - an
-                   #   - array
-                   # key1: string
+  # /path/to/file.yml content is expected to be valid YAML:
+  # ---
+  # key4:
+  #   sub2: again
+  #   sub1: another
+  # key3: 1
+  # key2:
+  #   - an
+  #   - array
+  # key1: string
 
-                   file { '/path/to/file.yml':
-                     ensure  => file,
-                     content => to_conf($content)
-                   }
-                   ENDHEREDOC
-                 ) do |args|
-        return YAML.dump(args.first)
-      end
-    end
-  end
+  $content = {
+    'key1' => 'string',
+    'key2' => ['an', 'array'],
+    'key3' => 1,
+    'key4' => {
+      'sub1' => 'another',
+      'sub2' => 'again'
+    }
+  }
+
+  file { '/path/to/file.yml':
+    ensure  => file,
+    content => to_conf($content)
+  }
+  DOC
+) do |args|
+  # @return [String] something
+  raise ArgumentError if args.empty?
+  YAML.dump(args.first)
 end

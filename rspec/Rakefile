@@ -26,12 +26,13 @@ task(:docker_build) { docker_build }
 desc 'Deleted the created docker image'
 task(:docker_rmi) { docker_rmi }
 
-# Tells which files to remove on clean task.
-CLEAN.include %w(.yardoc doc coverage log junit)
-
 # `:clean` task is supposed to clean intermediate/temporary files
-# `:clobber` task is uspposed to clean final products
-task clobber: [:clean, :docker_rmi]
+# `CLEAN` array tells which files to remove on `clean` task.
+CLEAN.include %w(.yardoc coverage log junit)
+
+# `:clobber` task is uspposed to clean final products. Requires `:clean` task.
+# `CLOBBER` array tells which files to remove on `clobber` task.
+CLOBBER.include %(doc pkg)
 
 # You normally don't need to re-define `:spec_standalone`, but this is a
 # special all-in-one project
@@ -50,3 +51,6 @@ desc 'Run the acceptance specs'
 RSpec::Core::RakeTask.new acceptance: [:spec, :docker_build] do |rspec|
   rspec.pattern = 'spec/acceptance/**/*_spec.rb'
 end
+
+# Building a module/gem obviously depends on all specs being met.
+task :build, [:acceptance]

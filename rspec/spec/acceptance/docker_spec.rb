@@ -1,6 +1,6 @@
+require 'spec_helper'
 require 'spec_helper_acceptance'
-require 'beaker-rspec'
-require 'beaker-hiera'
+# require 'beaker-hiera'
 
 # Other very interesting things you can include in your spec:
 # - users

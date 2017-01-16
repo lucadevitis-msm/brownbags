@@ -1,5 +1,4 @@
 gemspec
-# rubocop:disable Metrics/BlockLength
 source 'https://rubygems.org' do
   group :docs do
     gem 'puppet-strings'

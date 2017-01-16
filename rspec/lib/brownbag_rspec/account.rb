@@ -1,8 +1,8 @@
-module Brownbag
+module BrownbagRspec
   # Simple banc account class for RSpec Brownbag session
   #
   # @example usage
-  #   require 'brownbag/account'
+  #   require 'brownbag-rspec/account'
   #
   #   my_account = Brownbag::Account.new
   #   puts "I'm so broken :'( I've got #{my_account.balance} quids"

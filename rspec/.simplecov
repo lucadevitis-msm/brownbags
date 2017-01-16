@@ -6,7 +6,3 @@ SimpleCov.start do
   add_filter '/spec/'
   add_filter '/.vendor/'
 end
-SimpleCov.at_exit do
-    SimpleCov.result.format!
-end
-

@@ -1,7 +1,5 @@
 # rubocop:disable Metrics/LineLength
-# require 'serverspec'
 require 'beaker-rspec'
-
 # Noteworthy backends:
 # - ssh: to execute commands on another host
 # - docker: to execute commands inside a running container.

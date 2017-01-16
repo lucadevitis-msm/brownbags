@@ -1,5 +1,4 @@
 require 'serverspec'
-
 # Noteworthy backends:
 # - ssh: to execute commands on another host
 # - docker: to execute commands inside a running container.

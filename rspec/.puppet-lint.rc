@@ -1,5 +1,5 @@
---error-level=warning
---log-format="%{path}: %{kind}: %{message}"
+--error-level=all
+--log-format=%{path}: %{kind}: %{message}
 --relative
 --with-context
 --show-ignored

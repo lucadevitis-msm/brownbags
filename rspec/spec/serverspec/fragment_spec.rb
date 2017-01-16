@@ -1,4 +1,5 @@
 # rubocop:disable Metrics/LineLength
+require 'spec_helper'
 require 'spec_helper_serverspec'
 
 describe file('fragment.yml') do

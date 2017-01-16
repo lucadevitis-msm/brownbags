@@ -1,9 +1,10 @@
 # I don't want to be bothered with line lenght here.
 # rubocop:disable Metrics/LineLength
+require 'spec_helper'
 require 'spec_helper_bin'
-require 'brownbag/bin/check_transactions'
+require 'brownbag_rspec/bin/check_transactions'
 
-describe Brownbag::Bin::CheckTransactions do
+describe BrownbagRspec::Bin::CheckTransactions do
   # `config` is always empty for this spec, but I want to show you that with a
   # carfull/clevar `argv` and `config` usage we can create 100% test friendly
   # check/metrics/scripts.
@@ -14,17 +15,17 @@ describe Brownbag::Bin::CheckTransactions do
   #
   # Given a set of: argv, config, exit status, standard output matching reg exp
   [
-    [['spec/fixtures/files/transactions/ok.log'],                   {},  0, /OK/],
+    [%w(spec/fixtures/files/transactions/ok.log),                   {},  0, /OK/],
     [%w(--warning 30 spec/fixtures/files/transactions/warning.log), {},  0, /OK/],
-    [['spec/fixtures/files/transactions/warning.log'],              {},  1, /WARNING: 40/],
-    [['spec/fixtures/files/transactions/overdraft.log'],            {},  2, /CRITICAL: Not enough money/],
-    [['spec/fixtures/files/transactions/broken.log'],               {},  3, /UNKNOWN: fail/],
+    [%w(spec/fixtures/files/transactions/warning.log),              {},  1, /WARNING: 40/],
+    [%w(spec/fixtures/files/transactions/overdraft.log),            {},  2, /CRITICAL: Not enough money/],
+    [%w(spec/fixtures/files/transactions/broken.log),               {},  3, /UNKNOWN: fail/],
     [[],                                                            {},  3, /UNKNOWN: transactions log/]
   ].each do |argv, config, exit_status, stdout|
     # I could do it with a shared example, however it has a slightly different
     # meaning.
     context "when argv = #{argv}, config = #{config}" do
-      subject { Brownbag::Bin::CheckTransactions.new(argv) }
+      subject { BrownbagRspec::Bin::CheckTransactions.new(argv) }
 
       # Override subject's `config` attribute
       before(:example) do

@@ -1,3 +1,3 @@
 # Wrapper module for RSpec brownbag code
-module Brownbag
+module BrownbagRspec
 end
