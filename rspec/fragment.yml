@@ -1,0 +1,62 @@
+---
+meta:
+  - environment_name: 'meta_environment_name'
+  - schema_version: '0.2'
+network:
+  - name: network-name
+
+deployments:
+  -
+    name: "network-name.services.blue"
+    inputs:
+      -
+        MSMID_ACCOUNT: "text:msm"
+        MSMID_USERBASE: "text:gb"
+        MSMID_ENV: "text:env-name"
+        ENV: "text:env-name"
+        MSMID_SERVICEGROUP: "text:services"
+        PROV_REPONAME: "text:prov_reponame"
+        EYAML1_PRIV_KEY: "cred:eyaml_env-name_priv_key"
+        EYAML1_PUB_KEY: "cred:eyaml_env-name_pub_key"
+    server_arrays:
+      -
+        dcs:
+          - max: "1"
+            uid: eu-west-1b
+            weight: 100%
+        decision_threshold: "100"
+        instances_max: "1"
+        instances_min: "1"
+        resize_calm_time: "5"
+        resize_down_by: "1"
+        resize_up_by: "1"
+        state: enabled
+        type: alert
+        name: "network-name.services.service-name.1.blue"
+        autostart: "true"
+        cloud_name: "EC2 eu-west-1"
+        instance_type: r3.large
+        ssh_key_uid: 'network-name.sshkey'
+        iam_instance_profile: 'network-name.etl'
+        template: 'Template'
+        multi_cloud_image: 'Image'
+        associate_public_ip_address: false
+        subnets:
+          - name: 'network-name_Private-Services'
+        security_groups:
+          - name: "network-name_local"
+          - name: "network-name_inf-monitoring-local"
+        volumes:
+          -
+            name: "network-name.services.service-name.1.ebs1.blue"
+            size: 100
+            device: "sdf"
+            key: XXXXXX
+        inputs:
+          -
+            MSMID_ROLE: "text:service-name"
+            ROLE: "text:service-name"
+        tags:
+          - tag_1: 'ec2:Name=network-name.services.service-name.1.blue'
+          - tag_2: deployments:colour=blue
+          - tag_3: array:role=service-name

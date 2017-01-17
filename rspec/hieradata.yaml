@@ -1,0 +1,49 @@
+---
+ifetoolbelt::params::version: 'X.Y'
+ifetoolbelt::ejbca: "%{::msmid_env}-EJBCA"
+timezone::timezone: "UTC"
+timezone::region: "Europe"
+timezone::locality: "London"
+vim::opt_misc: ['ai', 'shiftwidth=2', 'tabstop=2', 'softtabstop=2', 'expandtab', 'ruler', 'hlsearch', 'incsearch']
+postfix::server::inet_interfaces: "localhost"
+java::java_major_version: 'X'
+java::java_minor_version: 'Y'
+artifactory::version: "X.Y.Z"
+artifactory::jdk: "jdk" # Override the default OpenJDK by using our preferred package.
+s3fs::tarball_url: "http://s3-eu-west-1.amazonaws.com/msm-public-repo/s3fs"
+s3fs::s3fs_version: 'X.Y'
+s3fs::config::options: "use_cache=,allow_other"
+sensu_client::rabbitmq_host: "sensu-dev1.local"
+sensu_client::sensu_version: "X.Y.Z"
+sensu_client::sensu_rpm_base_url: "https://s3-eu-west-1.amazonaws.com/msm-public-repo/sensu"
+sensu_client::plugin_source: "MSMFG/mon-plugins"
+sensu_client::client_name: "local"
+sensu_client::subscriptions:
+  - "default_dwh"
+  - "default_quiet"
+profile::rsyslog::server: "logstore.local"
+profile::os_limits::sysctl_vm_max_map_count: '131072'
+profile::os_limits::sysctl_net_core_somaxconn: '1024'
+profile::os_limits::sysctl_net_ipv4_tcp_tw_recycle: '1'
+profile::os_limits::sysctl_net_ipv4_tcp_tw_reuse: '1'
+limits:
+  '*':
+    nofile:
+      soft: '100000'
+      hard: '100000'
+    memlock:
+      soft: 'unlimited'
+      hard: 'unlimited'
+    as:
+      soft: 'unlimited'
+      hard: 'unlimited'
+  'root':
+    nofile:
+      soft: '100000'
+      hard: '100000'
+    memlock:
+      soft: 'unlimited'
+      hard: 'unlimited'
+    as:
+      soft: 'unlimited'
+      hard: 'unlimited'
