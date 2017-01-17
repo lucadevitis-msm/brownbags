@@ -10,7 +10,7 @@
 
 exec="/usr/bin/brownbag"
 prog="brownbag"
-config="<% @configuration_file_path %>"
+config="<%= @configuration_file_path %>"
 
 [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
 
@@ -20,7 +20,7 @@ start() {
     [ -x $exec ] || exit 5
     [ -f $config ] || exit 6
     echo -n $"Starting $prog: "
-    nohup $exec > /var/log/brownbag.log
+    nohup -- $exec $config > /var/log/brownbag.log &
     retval=$?
     echo
     [ $retval -eq 0 ] && touch $lockfile

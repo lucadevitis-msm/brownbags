@@ -8,5 +8,5 @@ def main(argv = ARGV)
 end
 
 loop do
-  main(*ARGV)
+  main(ARGV)
 end

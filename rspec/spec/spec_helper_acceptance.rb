@@ -1,44 +1,5 @@
 # rubocop:disable Metrics/LineLength
 require 'beaker-rspec'
-# Noteworthy backends:
-# - ssh: to execute commands on another host
-# - docker: to execute commands inside a running container.
-#
-# Keep an eye on:
-# https://github.com/mizzy/specinfra/tree/master/lib/specinfra/backend
-#
-# set :backend, :exec
-
-# You can control sudo in many ways.
-#
-# The following block enables the attribute `:sudo` for each
-# example/context. With this you can control sudo like this:
-#
-# describe command('ls /proc/1'), sudo: false do
-#   ...
-# end
-RSpec.configure do |hook|
-  hook.around :each, sudo: false do |example|
-    set :disable_sudo, true
-    example.run
-    set :disable_sudo, false
-  end
-end
-
-# You can monkey patch available classes, like `Serverspec::Type::File`, to
-# parse various file content types. The following patch is just to make the
-# fragment spec more readable.
-module Serverspec
-  module Type
-    class File
-      alias fragment_data content_as_yaml
-    end
-  end
-end
-
-# Load all shared examples
-Dir['./spec/support/**/*.rb'].each { |shared_example| require shared_example }
-
 # Configure the instances
 RSpec.configure do |hook|
   hook.before :suite do
@@ -61,12 +22,14 @@ RSpec.configure do |hook|
       # on host, 'gem install puppet --no-rdoc --no-ri --version 3.7.4'
       # on host, 'gem install facter --no-rdoc --no-ri --version 2.4.6'
       # on host, 'gem install hiera  --no-rdoc --no-ri --version 3.0.6'
-      # scp_to host, '.', '/opt/brownbag'
-      # install_dev_puppet_module_on host, source: '.',
-      #                                    module_name: 'brownbag'
       # write_hiera_config_on host, backends: ['yaml'],
       #                             yaml: { datadir: '/etc/puppet/hieradata' },
       #                             hierarchy: ['common']
+      scp_to host, '.', '/opt/brownbag'
+      install_dev_puppet_module_on host, source: '.',
+                                         module_name: 'brownbag',
+                                         target_module_path: '/etc/puppet/modules'
+      on host, 'puppet module install puppetlabs-stdlib'
     end
   end
 end

@@ -19,6 +19,6 @@ describe docker_container('brownbag') do
 
   # Use lists as argument for `its` to make use the `[]` operator of `subject`
   # in order to access `inspection` data.
-  its(['HostConfig.NetworkMode']) { is_expected.to eq 'bridge' }
+  its(['HostConfig.NetworkMode']) { is_expected.to match(/bridge|default/) }
   its(['Config.Image']) { is_expected.to eq 'centos:6.6' }
 end

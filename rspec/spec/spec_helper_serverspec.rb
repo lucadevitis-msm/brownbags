@@ -16,7 +16,6 @@ set :backend, :exec
 #   ...
 # end
 RSpec.configure do |hook|
-  hook.path = '/bin:/usr/bin:/sbin:/usr/sbin'
   hook.around :each, sudo: false do |example|
     set :disable_sudo, true
     example.run
