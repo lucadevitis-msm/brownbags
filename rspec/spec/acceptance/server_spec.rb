@@ -1,5 +1,4 @@
 require 'spec_helper_acceptance'
-# require 'beaker-hiera'
 
 # Other very interesting things you can include in your spec:
 # - users
