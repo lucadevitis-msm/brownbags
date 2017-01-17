@@ -55,6 +55,8 @@ CLEAN.include %w(.yardoc coverage log junit)
 # `CLOBBER` array tells which files to remove on `clobber` task.
 CLOBBER.include %(doc pkg)
 
+task clean: [:docker_rm, :docker_rmi]
+
 # You normally don't need to re-define `:spec_standalone`, but this is a
 # special all-in-one project
 Rake::Task[:spec_standalone].clear
@@ -72,8 +74,3 @@ desc 'Run the acceptance specs'
 RSpec::Core::RakeTask.new acceptance: [:spec, :docker_build] do |rspec|
   rspec.pattern = 'spec/acceptance/**/*_spec.rb'
 end
-
-# Building a module/gem obviously depends on all specs being met.
-task build: [:acceptance]
-
-task clean: [:docker_rm, :docker_rmi]
