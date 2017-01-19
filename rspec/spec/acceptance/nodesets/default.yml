@@ -8,8 +8,7 @@ HOSTS:
     hypervisor: docker
     docker_container_name: centos6.6-msm
 CONFIG:
-  # When you need to inspect the commands being used, you can use log_level
-  # log_level: verbose
+  log_level: warn
   quite: true
   type: foss
   masterless: true
