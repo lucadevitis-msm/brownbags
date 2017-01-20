@@ -63,6 +63,7 @@ Rake::Task[:spec_standalone].clear
 RSpec::Core::RakeTask.new(:spec_standalone) do |rspec|
   specs = 'classes,defines,functions,types,brownbag,serverspec'
   rspec.pattern = "spec/{#{specs}}/**/*_spec.rb"
+  rspec.ruby_opts = '-W0'
 end
 
 # Defining few sane requirements for the spec task. To me, it doesn't make any
@@ -73,4 +74,5 @@ task spec: [:validate, :lint, :rubocop, :'strings:generate', :docker_run]
 desc 'Run the acceptance specs'
 RSpec::Core::RakeTask.new acceptance: [:spec, :docker_build] do |rspec|
   rspec.pattern = 'spec/acceptance/**/*_spec.rb'
+  rspec.ruby_opts = '-W0'
 end
