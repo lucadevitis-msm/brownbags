@@ -1,5 +1,8 @@
 # rubocop:disable Metrics/LineLength
 require 'beaker-rspec'
+
+# logger.log_level = :warn
+
 # Configure the instances
 RSpec.configure do |hook|
   hook.before :suite do
@@ -9,6 +12,7 @@ RSpec.configure do |hook|
       # so I don't need to do any of this. Howver, you can always use Beaker
       # DSL to customize instances.
       #
+      # `on` is the Beaker DSL's Swiss Army Knife.
       # on host, 'yum --assumeyes install tar xz zlib-devel openssl-devel'
       # on host, 'yum --assumeyes groupinstall "Development Tools"'
       # on host, 'curl --remote-name http://ftp.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.gz'
@@ -22,13 +26,12 @@ RSpec.configure do |hook|
       # on host, 'gem install puppet --no-rdoc --no-ri --version 3.7.4'
       # on host, 'gem install facter --no-rdoc --no-ri --version 2.4.6'
       # on host, 'gem install hiera  --no-rdoc --no-ri --version 3.0.6'
-      # write_hiera_config_on host, backends: ['yaml'],
-      #                             yaml: { datadir: '/etc/puppet/hieradata' },
-      #                             hierarchy: ['common']
-      scp_to host, '.', '/opt/brownbag'
-      install_dev_puppet_module_on host, source: '.',
-                                         module_name: 'brownbag',
-                                         target_module_path: '/etc/puppet/modules'
+
+      # Copy arbitrary files into the instance
+      scp_to host, '.', '/opt/brownbag', silent: true
+
+      # Install puppet modules
+      install_dev_puppet_module_on host, source: '.', module_name: 'brownbag'
       on host, 'puppet module install puppetlabs-stdlib'
     end
   end

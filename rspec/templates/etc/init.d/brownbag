@@ -8,9 +8,10 @@
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-exec="/usr/bin/brownbag"
 prog="brownbag"
+exec="/usr/bin/${prog}"
 config="<%= @configuration_file_path %>"
+logfile="/var/log/${prog}.log"
 
 [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
 
@@ -20,7 +21,7 @@ start() {
     [ -x $exec ] || exit 5
     [ -f $config ] || exit 6
     echo -n $"Starting $prog: "
-    nohup -- $exec $config > /var/log/brownbag.log &
+    daemon $exec $config > $logfile &
     retval=$?
     echo
     [ $retval -eq 0 ] && touch $lockfile
