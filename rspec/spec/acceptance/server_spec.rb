@@ -3,19 +3,17 @@ require 'spec_helper_acceptance'
 # Other very interesting things you can include in your spec:
 # - users
 # - groups
-# - files
-#   - content inspection included
-#   - including certificates
 # - windows registry and features
-# - containers and images (lxc and docker)
 # - yum repos
-describe host('localhost') do
-  describe file('/etc/redhat-release') do
-    it { is_expected.to be_file }
-    its(:content) { is_expected.to include('CentOS release 6') }
+describe 'default node' do
+  describe host('localhost') do
+    it { is_expected.to be_resolvable.by('hosts') }
   end
 
-  it { is_expected.to be_resolvable.by('hosts') }
+  describe file('/etc/redhat-release') do
+    it { is_expected.to be_file }
+    its(:content) { is_expected.to contain('CentOS release 6') }
+  end
 
   # You can filter out some checks
   describe interface('lo'), if: os[:family] == 'redhat' do
