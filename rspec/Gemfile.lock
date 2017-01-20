@@ -381,19 +381,15 @@ DEPENDENCIES
   minitest!
   pry!
   puppet (< 4)!
-  puppet-lint!
   puppet-strings!
-  puppet-syntax!
   puppetlabs_spec_helper!
   rake (~> 10.0)!
-  rspec!
   rubocop!
   ruby-augeas!
   safe_yaml!
   sensu-plugin!
   serverspec!
   wirble!
-  yard!
 
 BUNDLED WITH
    1.13.7
