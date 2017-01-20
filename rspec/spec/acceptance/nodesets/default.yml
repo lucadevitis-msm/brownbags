@@ -1,8 +1,5 @@
 HOSTS:
   default:
-    roles:
-      - docker_container
-#      - master
     platform: el-6-x86_64
     image: centos:6.6-msm
     hypervisor: docker
