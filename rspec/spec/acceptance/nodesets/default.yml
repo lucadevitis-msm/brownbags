@@ -1,8 +1,8 @@
 HOSTS:
-  docker-centos6.6-msm:
+  default:
     roles:
       - docker_container
-      - master
+#      - master
     platform: el-6-x86_64
     image: centos:6.6-msm
     hypervisor: docker
