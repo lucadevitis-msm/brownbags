@@ -1,7 +1,7 @@
 {
   "name": "brownbag-rspec",
   "version": "1.0.0",
-  "author": "MSM",
+  "author": "Luca De Vitis <luca.devitis at moneysupermarket.com>",
   "license": "MIT",
   "summary": "Rspec-puppet brownbag",
   "source": "https://github.com/lucadevitis-msm/brownbags/rspec",
