@@ -1,4 +1,4 @@
-module BrownbagRspec
+module RSpecBrownbag
   # Simple banc account class for RSpec Brownbag session
   #
   # @example usage
