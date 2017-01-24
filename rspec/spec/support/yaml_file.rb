@@ -5,7 +5,7 @@ shared_examples 'a YAML file' do
   describe 'content' do
     it { expect(subject.content).not_to be_empty }
     it 'should be valid YAML' do
-      expect { YAML.load(subject.content) }.not_to raise_error
+      expect { YAML.safe_load(subject.content) }.not_to raise_error
     end
   end
 end

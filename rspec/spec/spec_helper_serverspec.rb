@@ -26,6 +26,7 @@ end
 # You can monkey patch available classes, like File, to parse various file
 # content types. The following patch is just to make the fragment spec more
 # readable.
+# rubocop:disable Style/Documentation
 module Serverspec
   module Type
     class File
@@ -33,6 +34,7 @@ module Serverspec
     end
   end
 end
+# rubocop:enable Style/Documentation
 
 # Load all shared examples
 Dir['./spec/support/**/*.rb'].each { |shared_example| require shared_example }
