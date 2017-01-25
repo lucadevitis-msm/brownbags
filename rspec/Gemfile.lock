@@ -250,6 +250,7 @@ GEM
     mixlib-cli (1.7.0)
     mocha (1.2.1)
       metaclass (~> 0.0.1)
+    msmfg-spec-helper (0.0.0)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     net-scp (1.2.1)
@@ -379,6 +380,7 @@ DEPENDENCIES
   hiera-puppet-helper!
   metadata-json-lint!
   minitest!
+  msmfg-spec-helper
   pry!
   puppet (< 4)!
   puppet-strings!
