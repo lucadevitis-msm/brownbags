@@ -1,18 +1,18 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'brownbag_rspec/version'
+require 'rspec_brownbag/version'
 
 Gem::Specification.new do |spec|
   raise 'RubyGems 2.0 or newer is required.' unless spec.respond_to?(:metadata)
-  spec.name = 'brownbag-rspec'
-  spec.version = BrownbagRspec::VERSION
+  spec.name = 'rspec-brownbag'
+  spec.version = RSpecBrownbag::VERSION
   spec.authors = ['Luca De Vitis']
   spec.email = ['luca.devitis at moneysupermarket.com']
 
   spec.summary = 'RSpec brownbag'
   spec.description = 'Set of examples for a brownbag session about RSpec'
-  spec.homepage = 'https://github.com/lucadevitis-msm/brownbags'
+  spec.homepage = 'https://github.com/lucadevitis-msm/brownbags/rspec'
   spec.license = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or

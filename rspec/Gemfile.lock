@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    brownbag-rspec (1.0.0)
+    rspec-brownbag (1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -373,7 +373,6 @@ DEPENDENCIES
   beaker-facter!
   beaker-hiera!
   beaker-rspec!
-  brownbag-rspec!
   bundler (~> 1.11)!
   coveralls!
   hiera!
@@ -386,6 +385,7 @@ DEPENDENCIES
   puppet-strings!
   puppetlabs_spec_helper!
   rake (~> 10.0)!
+  rspec-brownbag!
   rubocop!
   ruby-augeas!
   safe_yaml!

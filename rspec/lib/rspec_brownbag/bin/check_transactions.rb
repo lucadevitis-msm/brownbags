@@ -1,7 +1,7 @@
 require 'sensu-plugin/check/cli'
-require 'brownbag_rspec/account'
+require 'rspec_brownbag/account'
 
-module BrownbagRspec
+module RSpecBrownbag
   module Bin
     # Check an account transactions log against a threshold
     # @author Luca De Vitis <luca.devitis at moneysupermarket.com>
@@ -23,7 +23,7 @@ module BrownbagRspec
 
         unknown 'transactions log' unless transactions_log
 
-        account = BrownbagRspec::Account.new
+        account = RSpecBrownbag::Account.new
 
         # I'm expecting each log to be like: `operation amount`
         File.read(transactions_log).lines.each do |log|

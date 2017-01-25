@@ -1,12 +1,12 @@
 # I don't want to be bothered with line lenght here.
 # rubocop:disable Metrics/LineLength
 require 'spec_helper'
-require 'brownbag_rspec/account'
+require 'rspec_brownbag/account'
 
-describe BrownbagRspec::Account do
+describe RSpecBrownbag::Account do
   # Helper function
   def new_balance
-    BrownbagRspec::Account.new.balance
+    RSpecBrownbag::Account.new.balance
   end
 
   # Implicit subject!
