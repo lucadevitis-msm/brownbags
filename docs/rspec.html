@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>RSpec: An unexpected journey</title>
+
+		<meta name="description" content="RSpec all the things!">
+		<meta name="author" content="Luca De Vitis">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/theme/league.min.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.min.css">
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+		<style>
+		em {
+			color: #71e9f4;
+		}
+		</style>
+	</head>
+
+	<body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>RSpec all the things!</h1>
+          <p>An unexpected journey into specs (and Ruby)</p>
+        </section>
+        <section id="cucumber">
+          <h2>Cucumber is amazing!</h2>
+          <p>Take <a href="https://relishapp.com/rspec/">RSpec</a> documentation, for example</p>
+          <p>(Not a fan-boy presentation)</p>
+        </section>
+				<section id="unit_testing">
+					<h2>RSpec for unit testing</h2>
+					<ul>
+						<li><a href="https://relishapp.com/rspec/rspec-core">rspec-core</a></li>
+						<li><a href="https://relishapp.com/rspec/rspec-core">rspec-expectations</a></li>
+						<li><a href="https://relishapp.com/rspec/rspec-core">rspec-mocks</a></li>
+						<li><a href="http://rspec-puppet.com/">rspec-puppet</a> (give me that)</li>
+					</ul>
+				</section>
+				<section id="acceptance_testing">
+					<h2>RSpec for acceptance testing</h2>
+					<img width="50%" height="50%" src="http://anodelman.github.io/shared/img/beaker_vs_beaker_rspec.jpg" />
+				</section>
+				<section id="read_code">
+					<h2>Read the code</h2>
+					<p>As member of the <em>(Code) Comments Appreciation Society</em>, I tend to explain my code with comments<br/>(In the most tasteful way I can)</p>
+				</section>
+				<section id="try_code">
+					<h2>Try the code</h2>
+					<p>Requires <a href="https://www.ruby-lang.org/en/">Ruby</a> &gt;= 2.2.5, <a href="https://rvm.io/">RVM</a>/rbenv, <a href="https://www.docker.com/products/overview">Docker</a></p>
+					<pre><code class="bash hljs" data-trim>$ rvm use 2.2.5
+Using ~/.rvm/gems/ruby-2.2.5
+$ gem install bundle --no-rdoc --no-ri
+Fetching: bundle-0.0.1.gem (100%)
+Successfully installed bundle-0.0.1
+1 gem installed
+$ bundle exec rake acceptance</code></pre></dd>
+				</section>
+				<section id="repo_config">
+					<h2>brownbag-rspec repo config</h2>
+					<dl style="font-size: 50%">
+						<dt>Gemfile</dt>
+						<dd>Requirements management (<a href="http://bundler.io/">bundle</a>)</dd>
+						<dt>Rakefile</dt>
+						<dd>Task management (<a href="http://rake.rubyforge.org/doc/rakefile_rdoc.html">rake</a>)</dd>
+						<dt>.rubocop.yml</dt>
+						<dd>Ruby style checker (<a href="http://batsov.com/rubocop/">rubocop</a>)</dd>
+						<dt>.puppet-lint.rc</dt>
+						<dd>Puppet's manifests style checker (<a href="http://puppet-lint.com/">puppet-lint</a>)</dd>
+						<dt>.rspec</dt>
+						<dd><a href="http://rspec.info/">RSpec</a> command configuration file</dd>
+						<dt>.simplecov</dt>
+						<dd><a href="https://www.ruby-toolbox.com/projects/simplecov">Simplecov</a> configuration file</dd>
+						<dt>.fixture.yml</dt>
+						<dd><a href="https://rubygems.org/gems/puppetlabs_spec_helper/">puppetlabs_spec_helper</a>'s fixture</dd>
+					</dl>
+				</section>
+        <section id="the_journey">
+          <h2>The journey</h2>
+          <ol>
+            <li class="fragment">A simple ruby class</li>
+            <li class="fragment">A Sensu plugin</li>
+            <li class="fragment">Puppet catalogue</li>
+						<li class="fragment">JSON/YAML files</li>
+            <li class="fragment">Containers/Instances</li>
+            <li class="fragment">Puppet apply</li>
+          </ol>
+        </section>
+        <section id="a_simple_ruby_class">
+          <h2>A simple ruby class</h2>
+					<ol>
+						<li>lib/brownbag_rspec/account.rb</li>
+						<li>spec/brownbag_rspec/spec_helper.rb</li>
+						<li>spec/lib/brownbag_rspec/account_spec.rb</li>
+					</ol>
+        </section>
+				<section id="a_sensu_plugin">
+					<h2>A Sensu plugin</h2>
+					<ol>
+						<li>lib/brownbag_rspec/bin/check_transaction.rb</li>
+						<li>spec/spec_helper_bin.rb</li>
+						<li>spec/lib/brownbag_rspec/bin/check_transaction_spec.rb</li>
+					</ol>
+				</section>
+				<section id="puppet_catalogue">
+					<h2>Puppet catalogue</h2>
+					<ol>
+						<li>manifests/<em>{init,config,install,service}</em>.pp (<em>class</em>)</li>
+						<li>manifests/configuration_file.pp (<em>define</em>)</li>
+						<li>lib/puppet/parser/functions/to_conf.rb (<em>function</em>)</li>
+						<li>spec/spec_helper.rb</li>
+						<li>spec/<em>{classes,defines,functions}/**/*_spec.rb</em></li>
+					</ol>
+				</section>
+				<section id="serverspec">
+					<h2>Serverspec/specinfra</h2>
+					<dl>
+						<dt><em>serverspec</em></dt>
+						<dd>An <em>RSpec</em> compatible interface to describe common system <a href="http://serverspec.org/resource_types.html">resources</a>.</dd>
+						<dt><em>specinfra</em></dt>
+						<dd>An implementation adapter that plugs into <em>serverspec</em> and makes it (almost) system independent</dd>
+					</dl>
+				</section>
+				<section id="json_yaml">
+					<h2>JSON/YAML files</h2>
+					<ol>
+						<li>{fragment.yml,hieradata.yaml}</li>
+						<li>spec/spec_helper_serverspec.rb</li>
+						<li>spec/support/yaml_file.rb</li>
+						<li>spec/serverspec/{fragment,hieradata}_spec.yml</li>
+					</ol>
+				</section>
+				<section id="containers">
+					<h2>Containers</h2>
+					<p>Watch this...</p>
+					<ol>
+						<li class="fragment"><em>docker inspect</em> ouputs a JSON!</li>
+						<li class="fragment"><em>specinfra</em> has a <em>Docker</em> backend!</li>
+						<li class="fragment">spec/serverspec/docker_spec.rb</li>
+					</ol>
+				</section>
+				<section id="instances">
+					<h2>Instances</h2>
+					<p class="fragment"><em>beaker</em>, consistently use <em>ssh</em> on any instance/container</p>
+					<ol>
+						<li class="fragment">spec/acceptance/nodesets/default.yml</li>
+						<li class="fragment">spec/acceptance/server_spec.rb</li>
+					</ol>
+				</section>
+				<section id="puppet_apply">
+					<h2>Puppet apply</h2>
+					<p>Last, but not least: spec/acceptance/brownbag_spec.rb</p>
+				</section>
+      </div>
+    </div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.min.js"></script>
+    <script>
+      Reveal.initialize({
+				// Push each slide change to the browser history
+				history: true,
+				// Display controls in the bottom right corner
+		    controls: false,
+				// Display a presentation progress bar
+		    progress: true,
+        // Display the page number of the current slide
+        slideNumber: false,
+        // Push each slide change to the browser history
+        keyboard: true,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+				// Turns fragments on and off globally
+		    fragments: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+        dependencies: [
+					{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.min.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'https://raw.githubusercontent.com/calevans/external/master/external/external.js', condition: function() { return !!document.querySelector( '[data-external]' ); } },
+				]
+      });
+    </script>
+  </body>
+</html>
