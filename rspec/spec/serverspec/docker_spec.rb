@@ -17,8 +17,8 @@ describe docker_container('brownbag') do
   it { is_expected.to be_running }
   it { is_expected.not_to have_volume('/tmp', '/data') }
 
-  # Use lists as argument for `its` to make use the `[]` operator of `subject`
-  # in order to access `inspection` data.
+  # If you specify a lists as the argument of `its` it use the `[]` operator of
+  # `subject`. In this case it results in `inspection` data.
   its(['HostConfig.NetworkMode']) { is_expected.to match(/bridge|default/) }
   its(['Config.Image']) { is_expected.to eq 'centos:6.6' }
 end
