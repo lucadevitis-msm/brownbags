@@ -36,6 +36,10 @@ describe 'default node' do
 
   # Test the outcome of specific commands
   describe command('netstat') do
+    # Checking the stderr seems redundant, but it helps when debugging. I could
+    # have used a much more readable `is_expected.to be_empty`, but the
+    # following has a better output in case of problems.
+    its(:stderr) { is_expected.to eq '' }
     its(:exit_status) { is_expected.to eq 0 }
   end
 
@@ -56,6 +60,7 @@ describe 'default node' do
   end
   # Test any attribute that you can get from `ps` command
   describe process('sshd') do
+    # Unfortunately, `File.read` would read the file on the current host.
     its(:pid) { is_expected.to eq command("cat #{sshd_pidfile}").stdout.to_i }
     its(:user) { is_expected.to eq 'root' }
   end
