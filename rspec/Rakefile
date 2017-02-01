@@ -61,6 +61,7 @@ task clean: [:docker_rm, :docker_rmi]
 # special all-in-one project
 Rake::Task[:spec_standalone].clear
 RSpec::Core::RakeTask.new(:spec_standalone) do |rspec|
+  puts 'Preparing to run specs...'
   specs = 'classes,defines,functions,types,rspec_brownbag,serverspec'
   rspec.pattern = "spec/{#{specs}}/**/*_spec.rb"
   rspec.ruby_opts = '-W0'
@@ -74,6 +75,7 @@ task spec: [:validate, :lint, :rubocop, :'strings:generate', :docker_run]
 # Again, doesn't make any sense to run acceptance specs if standard specs fail.
 desc 'Run the acceptance specs'
 RSpec::Core::RakeTask.new acceptance: [:spec, :docker_build] do |rspec|
+  puts 'Preparing to run acceptance specs...'
   rspec.pattern = 'spec/acceptance/**/*_spec.rb'
   rspec.ruby_opts = '-W0'
   rspec.verbose = false
