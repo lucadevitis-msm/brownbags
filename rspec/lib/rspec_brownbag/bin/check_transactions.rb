@@ -28,7 +28,7 @@ module RSpecBrownbag
         # I'm expecting each log to be like: `operation amount`
         File.read(transactions_log).lines.each do |log|
           operation, amount = log.split
-          unknown operation unless %w(deposit withdrow).include? operation
+          unknown operation unless %w(deposit withdraw).include? operation
           unknown amount unless amount =~ /^[0-9]+/
           account.send operation.to_sym, amount.to_i
         end

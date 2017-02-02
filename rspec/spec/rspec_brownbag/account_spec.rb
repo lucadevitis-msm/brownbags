@@ -20,7 +20,7 @@ describe RSpecBrownbag::Account do
   describe '#new' do
     # one-liner syntax. `is_expected` is the same as `expect(subject)`
     it { is_expected.to respond_to(:balance) }
-    it { is_expected.to respond_to(:deposit, :withdrow).with(1).argument }
+    it { is_expected.to respond_to(:deposit, :withdraw).with(1).argument }
 
     # You can nest `describe`. `describe` and `context` are the same.
     describe '#balance' do
@@ -44,7 +44,7 @@ describe RSpecBrownbag::Account do
     end
   end
 
-  describe '#withdrow' do
+  describe '#withdraw' do
     context 'when balance is high enough' do
       # `let` is a memoized helper function
       let(:initial_amount) { 5 }
@@ -55,7 +55,7 @@ describe RSpecBrownbag::Account do
 
       it 'should change the balance' do
         # Notice the curly brackets!
-        expect { subject.withdrow(3) }.to change(subject, :balance).from(initial_amount).to(initial_amount - 3)
+        expect { subject.withdraw(3) }.to change(subject, :balance).from(initial_amount).to(initial_amount - 3)
       end
     end
 
@@ -64,7 +64,7 @@ describe RSpecBrownbag::Account do
 
       it 'should raise an error' do
         # You can catch exceptions!
-        expect { subject.withdrow(7) }.to raise_error('Not enough money')
+        expect { subject.withdraw(7) }.to raise_error('Not enough money')
       end
     end
   end

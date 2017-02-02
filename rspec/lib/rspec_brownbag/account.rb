@@ -1,5 +1,5 @@
 module RSpecBrownbag
-  # Simple banc account class for RSpec Brownbag session
+  # Simple bank account class for RSpec Brownbag session
   #
   # @example usage
   #   require 'brownbag-rspec/account'
@@ -22,10 +22,10 @@ module RSpecBrownbag
 
     # Increase the account balance
     #
-    # @param [Integer] amount represents the amount of money to withdrow
+    # @param [Integer] amount represents the amount of money to withdraw
     #
     # @raise [StandardError] if `amount` is greater than the balance
-    def withdrow(amount)
+    def withdraw(amount)
       raise 'Not enough money' unless amount <= balance
       @balance -= amount
     end
